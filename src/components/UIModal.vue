@@ -107,6 +107,7 @@ const addresses = [
                 <span class="table__header table__header__street__margin">АДРЕС</span>
                 <span class="table__header table__header__street__margin">АДРЕС</span>
                 <span class="table__header table__header__street__margin">АДРЕС</span>
+                <span class="table__header table__header__street__margin">АДРЕС</span>
 
                 <select class="table__header table__header__select">
                   <option>REACH</option>
@@ -128,7 +129,7 @@ const addresses = [
                   <span>{{ address.number }}</span>
                   <hr />
 
-                  <span style="width: 80px">{{ address.index }}</span>
+                  <span style="width: 100px">{{ address.index }}</span>
                   <hr />
 
                   <span>{{ address.city }}</span>
