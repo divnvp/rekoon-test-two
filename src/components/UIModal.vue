@@ -903,6 +903,12 @@ input:hover, select:hover {
   max-width: calc(320px - 10px);
   max-height: 100px;
 
+  &-scroll {
+    max-width: 300px;
+
+    overflow-y: hidden;
+  }
+
   &__header {
     font-weight: 600;
     font-size: 8px;
@@ -936,15 +942,13 @@ input:hover, select:hover {
 
   &__body {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex: 1 1 0;
 
     margin-top: 8px;
     max-height: 250px;
     max-width: 300px;
     
-    display: inline-block;
-    overflow-y: auto;
     white-space: nowrap;
 
     font-size: 8px;
@@ -1305,6 +1309,12 @@ input:hover, select:hover {
   max-width: 145px;
   max-height: 500px;
 
+  &-scroll {
+    max-width: 190px;
+
+    overflow-y: hidden;
+  }
+
   &__header {
     font-weight: 600;
     font-size: 6px;
@@ -1338,11 +1348,11 @@ input:hover, select:hover {
 
   &__body {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex: 1 1 0;
 
     margin-top: 8px;
-    max-height: 250px;
+    max-height: 150px;
     
     font-size: 6px;
 
