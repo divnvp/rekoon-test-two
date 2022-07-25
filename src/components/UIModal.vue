@@ -16,11 +16,11 @@ const mailParams = [
 ];
 
 const addresses = [
-  { id: 1, number: "1", index: "ПО_105064", city: "Москва", street: "ул. Земляной Вал, 2", reach: 10432 },
-  { id: 2, number: "1", index: "ПО_105064", city: "Москва", street: "ул. Земляной Вал, 2", reach: 10432 },
-  { id: 3, number: "1", index: "ПО_105064", city: "Москва", street: "ул. Земляной Вал, 2", reach: 10432 },
-  { id: 4, number: "1", index: "ПО_105064", city: "Москва", street: "ул. Земляной Вал, 2", reach: 10432 },
-  { id: 5, number: "1", index: "ПО_105064", city: "Москва", street: "ул. Земляной Вал, 2", reach: 10432 },
+  { id: 1, number: "1", index: "ПО_105064", city: "Москва", street: "ул. Земляной Вал, 2", street2: "ул. Земляной Вал, 2", street3: "ул. Земляной Вал, 2", reach: 10432 },
+  { id: 2, number: "1", index: "ПО_105064", city: "Москва", street: "ул. Земляной Вал, 2", street2: "ул. Земляной Вал, 2", street3: "ул. Земляной Вал, 2", reach: 10432 },
+  { id: 3, number: "1", index: "ПО_105064", city: "Москва", street: "ул. Земляной Вал, 2", street2: "ул. Земляной Вал, 2", street3: "ул. Земляной Вал, 2", reach: 10432 },
+  { id: 4, number: "1", index: "ПО_105064", city: "Москва", street: "ул. Земляной Вал, 2", street2: "ул. Земляной Вал, 2", street3: "ул. Земляной Вал, 2", reach: 10432 },
+  { id: 5, number: "1", index: "ПО_105064", city: "Москва", street: "ул. Земляной Вал, 2", street2: "ул. Земляной Вал, 2", street3: "ул. Земляной Вал, 2", reach: 10432 },
 ]
 </script>
 
@@ -99,11 +99,13 @@ const addresses = [
 
         <aside class="row">
           <section class="col">
-            <div>
+            <div class="table-scroll">
               <div class="table">
                 <span class="table__header table__header__number__margin">№</span>
                 <span class="table__header table__header__index__margin">ИНДЕКС</span>
                 <span class="table__header table__header__city__margin">ГОРОД</span>
+                <span class="table__header table__header__street__margin">АДРЕС</span>
+                <span class="table__header table__header__street__margin">АДРЕС</span>
                 <span class="table__header table__header__street__margin">АДРЕС</span>
 
                 <select class="table__header table__header__select">
@@ -134,6 +136,12 @@ const addresses = [
                   <hr />
 
                   <span>{{ address.street }}</span>
+                  <hr />
+                  
+                  <span>{{ address.street2 }}</span>
+                  <hr />
+
+                  <span>{{ address.street3 }}</span>
                   <hr />
 
                   <span>{{ address.reach }}</span>
@@ -195,6 +203,43 @@ const addresses = [
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 0.6s, transform 0.5s;
+}
+
+button:hover {
+  background-color: #D9DADB;
+  transform: scale(110%);
+}
+
+input:hover, select:hover {
+  background-color: #EEF2FB;
+  transition: background-color 0.6s;
+}
+
+::-webkit-scrollbar{
+    height: 8px;
+
+    background: #EEF2FB;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:horizontal{
+    height: 8px;
+    background: #E90D00;
+    border-radius: 100px;
+}
+
+.modal__main__mail-params_box {
+  transition: background-color 0.6s, transform 0.5s;
+}
+
+.modal__main__mail-params_box:hover {
+  background-color: #D9DADB;
+  transform: scale(110%);
 }
 
 @media screen and (min-width: 1008px){
@@ -446,7 +491,7 @@ const addresses = [
         line-height: 16px;
         color: #4F5258;
 
-        padding: 12px 16px;
+        padding: 10px 16px;
 
         margin-right: 18px;
       }
@@ -461,6 +506,7 @@ const addresses = [
   align-items: center;
 
   margin-top: 16px;
+  
 
   background: #EEF2FB;
   border-radius: 3px;
@@ -470,6 +516,12 @@ const addresses = [
   max-width: calc(586px - 76px);
   max-height: 100px;
 
+  &-scroll {
+    max-width: 600px;
+
+    overflow-y: hidden;
+  }
+
   &__header {
     font-weight: 600;
     font-size: 12px;
@@ -478,6 +530,7 @@ const addresses = [
     text-transform: uppercase;
 
     color: #4F5258;
+    width: 100%;
 
     &__select {
       border: none;
@@ -503,32 +556,21 @@ const addresses = [
 
   &__body {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex: 1 1 0;
 
     margin-top: calc(20px - 12px);
-    max-height: 350px;
+    height: 350px;
     
-    display: inline-block;
-    overflow-y: auto;
     white-space: nowrap;
-
-    ::-webkit-scrollbar{
-        height: 4px;
-        width: 4px;
-        background: gray;
-    }
-
-    ::-webkit-scrollbar-thumb:horizontal{
-        background-color: #000;
-        border-radius: 10px;
-    }
 
     &_row {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
+      flex: 1;
+      width: 100%;
 
       padding: 24px 32px;
 
@@ -639,7 +681,6 @@ const addresses = [
     font-weight: 700;
     font-size: 8px;
     line-height: 16px;
-    /* identical to box height, or 133% */
 
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -899,23 +940,13 @@ const addresses = [
 
     margin-top: 8px;
     max-height: 250px;
+    max-width: 300px;
     
     display: inline-block;
     overflow-y: auto;
     white-space: nowrap;
 
     font-size: 8px;
-
-    ::-webkit-scrollbar{
-        height: 4px;
-        width: 4px;
-        background: gray;
-    }
-
-    ::-webkit-scrollbar-thumb:horizontal{
-        background-color: #000;
-        border-radius: 10px;
-    }
 
     &_row {
       display: flex;
@@ -1311,24 +1342,8 @@ const addresses = [
 
     margin-top: 8px;
     max-height: 250px;
-    width: 180px;
     
-    display: inline-block;
-    overflow-y: auto;
-    white-space: nowrap;
-
     font-size: 6px;
-
-    ::-webkit-scrollbar{
-        height: 4px;
-        width: 4px;
-        background: gray;
-    }
-
-    ::-webkit-scrollbar-thumb:horizontal{
-        background-color: #000;
-        border-radius: 10px;
-    }
 
     &_row {
       display: flex;
